@@ -10,6 +10,9 @@ public class MyCat {
     public  MyCat(){
         System.out.println("MyCat is loder by ："+this.getClass().getClassLoader());
 
+
+
+
 //        System.out.println("From MyCat："+MySample.class);
 //        System.out.println("From MyCat："+MySample.class.hashCode());
     }
