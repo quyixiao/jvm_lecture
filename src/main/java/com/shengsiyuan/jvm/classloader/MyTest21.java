@@ -22,8 +22,8 @@ public class MyTest21 {
         MyTest16 loader1 = new MyTest16("loader1");
         MyTest16 loader2 = new MyTest16("loader2");
 
-        loader1.setPath("C:\\Users\\Administrator\\Desktop\\");
-        loader2.setPath("C:\\Users\\Administrator\\Desktop\\");
+        loader1.setPath("/Users/quyixiao/Desktop/");
+        loader2.setPath("/Users/quyixiao/Desktop/");
 
         Class<?> clazz1 = loader1.loadClass("com.shengsiyuan.jvm.classloader.MyPerson");
         Class<?> clazz2 = loader2.loadClass("com.shengsiyuan.jvm.classloader.MyPerson");

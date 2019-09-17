@@ -81,7 +81,7 @@ public class MyTest16 extends ClassLoader {
      */
     public static void test3() throws ClassNotFoundException, IllegalAccessException, InstantiationException, InterruptedException {
         MyTest16 loader1 = new MyTest16("loader1");
-        loader1.setPath("C:\\Users\\Administrator\\Desktop\\");
+        loader1.setPath("/Users/quyixiao/Desktop/");
 
         Class<?> clazz = loader1.loadClass("com.shengsiyuan.jvm.classloader.MyTest1");
         System.out.println(clazz);
@@ -96,10 +96,10 @@ public class MyTest16 extends ClassLoader {
 
         System.gc();
 
-        Thread.sleep(100000);
+       // Thread.sleep(100000);
 
         loader1 = new MyTest16("loader1");
-        loader1.setPath("C:\\Users\\Administrator\\Desktop\\");
+        loader1.setPath("/Users/quyixiao/Desktop/");
         clazz = loader1.loadClass("com.shengsiyuan.jvm.classloader.MyTest1");
         System.out.println(clazz);
         System.out.println("clazz:"+clazz.hashCode());
@@ -115,7 +115,7 @@ public class MyTest16 extends ClassLoader {
     public static void test2() throws ClassNotFoundException, IllegalAccessException, InstantiationException {
         MyTest16 loader1 = new MyTest16("loader1");
         //loader1.setPath("E:\\Git\\yichao0803\\jvm_lecture\\target\\classes");
-        loader1.setPath("C:\\Users\\Administrator\\Desktop\\");
+        loader1.setPath("/Users/quyixiao/Desktop/");
 
         Class<?> clazz = loader1.loadClass("com.shengsiyuan.jvm.classloader.MyTest1");
         System.out.println(clazz);
@@ -125,7 +125,7 @@ public class MyTest16 extends ClassLoader {
         System.out.println();
 
         MyTest16 loader2 = new MyTest16(loader1, "loader2");
-        loader2.setPath("C:\\Users\\Administrator\\Desktop\\");
+        loader2.setPath("/Users/quyixiao/Desktop/");
 
         Class<?> clazz2 = loader2.loadClass("com.shengsiyuan.jvm.classloader.MyTest1");
         System.out.println(clazz2);
@@ -135,7 +135,7 @@ public class MyTest16 extends ClassLoader {
         System.out.println();
 
         MyTest16 loader3 = new MyTest16(loader2, "loader3");
-        loader3.setPath("C:\\Users\\Administrator\\Desktop\\");
+        loader3.setPath("/Users/quyixiao/Desktop/");
 
         Class<?> clazz3 = loader3.loadClass("com.shengsiyuan.jvm.classloader.MyTest1");
         System.out.println(clazz3);
