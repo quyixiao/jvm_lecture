@@ -14,10 +14,15 @@ public class MyTest18_1 {
         Class<?> clazz=loader1.loadClass("com.shengsiyuan.jvm.classloader.MyTest1");
 
         System.out.println("class："+clazz.hashCode());
+        System.out.println("------------------------------------------------------------------");
         System.out.println("class loader："+clazz.getClassLoader());
         System.out.println("class loader："+clazz.getClassLoader().getClass());
+        System.out.println("==================================================================");
         System.out.println("class loader："+clazz.getClassLoader().getParent());
         System.out.println("class loader："+clazz.getClassLoader().getParent().getClass());
+       // System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        //System.out.println("class loader："+clazz.getClassLoader().getParent().getParent());
+        //System.out.println("class loader："+clazz.getClassLoader().getParent().getParent().getClass());
     }
 
 }
