@@ -20,9 +20,7 @@ public class MyTest18_1 {
         System.out.println("==================================================================");
         System.out.println("class loader："+clazz.getClassLoader().getParent());
         System.out.println("class loader："+clazz.getClassLoader().getParent().getClass());
-       // System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-        //System.out.println("class loader："+clazz.getClassLoader().getParent().getParent());
-        //System.out.println("class loader："+clazz.getClassLoader().getParent().getParent().getClass());
+
     }
 
 }
