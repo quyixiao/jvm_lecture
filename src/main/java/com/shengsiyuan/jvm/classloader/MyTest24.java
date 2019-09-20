@@ -8,6 +8,7 @@ package com.shengsiyuan.jvm.classloader;
  * 如果ClassX引用了ClassY，那么ClassX的类加载器就会去加载ClassY（前提是ClassY尚未被加载）
  * <p>
  * 线程上下文类加载器（Context ClassLoader）
+ *
  * <p>
  * 线程上下文类加载器是从JDK1.2开始引入的，类Thread中的getContextClassLoader()与setContextClassLoader()
  * 分别用来获取和设置上下文类加载器

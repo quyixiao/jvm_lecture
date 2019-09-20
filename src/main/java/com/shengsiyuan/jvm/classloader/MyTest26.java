@@ -18,11 +18,10 @@ package com.shengsiyuan.jvm.classloader;
  * ContextClassLoader的作用就是为了破坏Java的类加载委托机制。
  * <p>
  * 当高层提供了统一的接口让底层实现，同时又要在高层加载（实例化）底层的类时，就必须通过上下文类加载器来帮助高层的ClassLoader
- * 找到并加载该类
+ * 找到并加载底层类
  * @Date 2019/8/7 8:40
  * @Created by Zhangyichao
  */
-import sun.awt.windows.ThemeReader;
 
 import java.sql.Driver;
 import java.util.Iterator;
@@ -31,15 +30,15 @@ import java.util.ServiceLoader;
 public class MyTest26 {
     public static void main(String[] args) {
         // Thread.currentThread().setContextClassLoader(MyTest26.class.getClassLoader().getParent());
-        ServiceLoader<Driver> loader=ServiceLoader.load(Driver.class);
-        Iterator<Driver> iterator=loader.iterator();
-        while (iterator.hasNext()){
-            Driver driver=iterator.next();
+        ServiceLoader<Driver> loader = ServiceLoader.load(Driver.class);
+        Iterator<Driver> iterator = loader.iterator();
+        while (iterator.hasNext()) {
+            Driver driver = iterator.next();
 
-            System.out.println("driver："+driver.getClass()+",loader："+driver.getClass().getClassLoader());
+            System.out.println("driver：" + driver.getClass() + ",loader：" + driver.getClass().getClassLoader());
         }
-        System.out.println("当前线程上下文类加载器："+Thread.currentThread().getContextClassLoader());
-        System.out.println("ServiceLoader的类加载器："+ServiceLoader.class.getClassLoader());
+        System.out.println("当前线程上下文类加载器：" + Thread.currentThread().getContextClassLoader());
+        System.out.println("ServiceLoader的类加载器：" + ServiceLoader.class.getClassLoader());
 
     }
 }
