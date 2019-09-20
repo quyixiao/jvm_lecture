@@ -14,18 +14,25 @@ import java.lang.reflect.Method;
  * 3、不同的类加载器可以为相同名称（binary name）的类创建额外的命名空间。相同名称的类可以并存在Java虚拟机中，只需要用不同的
  * 类加载器来加载他们即可。不同类加载器所加载的类之间是不兼容的，这就相当于在Java虚拟机内部创建了一个又一个相互隔离的Java类空间，
  * 这类技术在很多框架中都得到了实际应用。
+ *
+ *
+ * 命名空间
+ * 每个类加载器都有自己的命名空间，命名空间
  * @Date 2019/8/4 15:16
  * @Created by Zhangyichao
  */
 public class MyTest21 {
     public static void main(String[] args) throws Exception {
         MyTest16 loader1 = new MyTest16("loader1");
+        System.out.println(loader1);
         MyTest16 loader2 = new MyTest16("loader2");
+        System.out.println(loader2);
 
         loader1.setPath("/Users/quyixiao/Desktop/");
         loader2.setPath("/Users/quyixiao/Desktop/");
-
+        //
         Class<?> clazz1 = loader1.loadClass("com.shengsiyuan.jvm.classloader.MyPerson");
+        //
         Class<?> clazz2 = loader2.loadClass("com.shengsiyuan.jvm.classloader.MyPerson");
 
         System.out.println(clazz1 == clazz2);

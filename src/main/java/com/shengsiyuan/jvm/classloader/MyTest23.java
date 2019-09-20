@@ -34,6 +34,18 @@ public class MyTest23 {
         System.out.println();
         System.out.println(System.getProperty("java.class.path"));
 
+        /***
+         * 内建于 JVM 中的启动类加载器会加载 java.lang.Classloader 以及其他的 Java平台类，当 jvm 启动时，一块特殊的机器码会运行
+         * ,它会加载扩展类加载器与系统类加载器，这块特殊的机器码叫做启动类加载器（Bootstrap）
+         * 启动类加载器并不是java类，而是其他的加载器则都是 java 类
+         * 启动类加载器是特定于平台的机器命令，它负责开启整个加载过程
+         * 所有的类加载器（除了启动类加载器）都以实现为 java 类，不过，总归要有一个组件来加载第一个 Java 类加载器，从而让整个过程能够
+         * 顺利进行下去，加载第一个纯 java 类加载器就是启动类加载器的职责
+         *
+         * 启动类加载器还会负责加载贷 JRE 正常运行所需要的基本组件 ，这包括 java.util 与 java.lang 包中的类等等
+         *
+         */
+
         System.out.println(ClassLoader.class.getClassLoader());
 
         // 扩展类加载器与系统类加载器也是有启动类加载器所加载的

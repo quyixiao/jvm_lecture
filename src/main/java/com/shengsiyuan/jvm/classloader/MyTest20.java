@@ -19,7 +19,10 @@ public class MyTest20 {
         System.out.println(clazz1);
         Class<?> clazz2 = loader2.loadClass("com.shengsiyuan.jvm.classloader.MyPerson");
         System.out.println(clazz2);
-
+        //结果为 true ,loader1 的父类是系统类加载器 , loader2 的父类也是系统类加载器，系统类加载器是可以加载系统类加载器
+        // 系统类加载器就是 MyPerson 的定义类加载器,系统类加载器已经加载了 MyPerson 类，如果发现已经加载了，那就直接从
+        // 系统类加载器中加载，class1 和 class2  ，这也是根本所在，系统类加载器加载，
+        //
         System.out.println(clazz1 == clazz2);
 
         Object object1 = clazz1.newInstance();
