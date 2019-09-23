@@ -5,6 +5,12 @@ package com.shengsiyuan.jvm.classloader;
  * @Description 不同的类加载器，由不同的加载器加载
  * @Date 2019/7/31 7:39
  * @Created by Zhangyichao
+ * void main(){
+ *     public void main(String [] args){
+ *
+ *     }
+ * }
+ *
  */
 public class MyTest7 {
     public static void main(String[] args) throws Exception {

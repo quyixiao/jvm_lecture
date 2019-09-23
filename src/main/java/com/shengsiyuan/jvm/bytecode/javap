@@ -1,0 +1,98 @@
+1.使用一个 javap -verbose 命令分析一个字节码文件时，将会分析该字节码文件的魔数，版本号，常量池，类信息，类的构造方法，
+类中的方法信息，类变量与成员变量的信息
+2.魔数：所有的.class 字节码文件的前四个字节都是魔数，魔数为固定数值 ：0xCAFEBABE , 如果任何的一个文件不是 CAEBABE 的话，肯定不是一个
+合法的字节码文件
+3.魔数之后的4个字节为版本信息，前两个字节表示的是 minor version（次版本号），后两个字节是 major version(主版本号)
+这里的版本号为 00 00 00 34,换算成十进制，表示次版本号是0，主版本号是52.所以，文件的版本号为1.8.0,可以通过 java -version
+命令来验证
+4.常量池（constant pool） :紧接着主版本号之后的就是入口(不同的类的常量池的长度是不确定的)一个 java 类定义的很多的信息都是由
+常量池维护和描述的，里面的很多的信息都会被很多的地方引用到，我们可以将常量池可以看作是 class 文件资源仓库，比如说 java 类中定义的
+方法与变量信息，这些信息都是常量池中维护的，都是存储在常量池中，常量池主要存储两类常量，字面量与符号引用，字面量如文本字符串
+,java 中声明的 final 常量值等，而符号引用如类和接口的的全局限定名，字段名称和描述符，方法的名称和描述符等
+
+5.常量池的总体结构 ： java 类所对应的常量池主要由常量池的数量和常量池的数组这两部分组成，常量池数量紧跟在主版本后面，占据
+2个字节，常量池数组则紧跟在常量池数量之后，常量池数组和一般的数组不同的是，常量池数组中的不同的元素的类型，结构都是不同的。长度当然也就
+不同，但是每一种元素的第一个数据都是一个 u1类型，该字节是个标志位，占据一个字节，JVM在解析常量池时，会根据这个 u1类型来获取元素的具体
+类型。值得注意的是常量池中数组中的元素的个数= 常量池数 -1 （其中的0暂不使用）目的是满足某些常量池索引值的数据在特定的情况下需要表达
+【不引用任何一个常量池】的含义，根本原因在于，索引为0 也是一个常量（保留常量），只不过它不位于常量表中，这个常量就对应 null 值
+，所这，常量池的索引从1 而非0开始
+在 jvm 规范中，每个变量/字段都有描述信息，描述信息主要作用是描述字段的数据类型，方法的参数列表(包括数量，类型与顺序)与返回值，根据
+描述符规则，基本数据类型代表无返回的 void 类型都用一个大写的字符来表示，对象类型则使用字符L 加对象的全限定名来表示，为了压缩字节码文件的
+体积，对于基本数据类型，JVM 都只用一个大写的字母来表示，如下所示
+7.对于数组类型来说，每一个维度使用一个前置的[来表示，如 int[] ,被记录为[I,String[][] 被记录为[[java/lang/String;
+8.用描述符描述方法时，按照先参数列表，后返回值顺序来描述，参数列表按照参数的严格顺序放在一组()类如方法 String getRealNameByIdAndNiceNickName(
+int id ,String name) 的描述符为
+
+
+6.  常量                            项目                  类型          描述
+    CONSTANT_utf8_info              tag                  U1            值为1
+                                    length               U2            UTF-8编码的字符串长度
+                                    bytes                U1            长度为 length的 UTF-8编码的字符串
+    CONSTANT_Integer_info           tag                  U1            值为3
+                                    bytes                U4            按照高倍在前存储的 int 值
+    CONSTANT_Float_info             tag                  U1            值为4
+                                    bytes                U4            按照高位在前存储的 float 值
+    CONSTANT_Long_info              tag                  U1            值为5
+                                    bytes                U8            按照高位在前存储的 long 值
+    CONSTANT_Double_info            tag                  U1            值为6
+                                    bytes                U8            按照高位在前存储的 double 值
+    CONSTANT_Class_info             tag                  U1            值为7
+                                    index                U2            指向全限定名常量项的索引
+    CONSTANT_String_info            tag                  U1            值为8
+                                    index                U2            指向字符字面量的索引
+    CONSTANT_fieldref_info          tag                  U1            值为9
+                                    index                U2            指向声明字段的类或者接口描述符 CONSTANT_Class_info 的索引项
+                                    index                U2            指向字段描述符 CONSTANT_NameAndType_info 的索引项
+    CONSTANT_Methodref_info         tag                  U1            值为10
+                                    index                U2            指向声明字段的类或者接口描述符 CONSTANT_Class_info 的索引项
+                                    index                U2            指向名称及类型描述符 CONSTANT_NameAndType_info 的索引项
+    CONSTANT_InterfaceMethodref_info TAG                 U1            值为11
+                                    index                U2            指向声明方法的接口描述符 CONSTANT_Class_Info 的索引项
+                                    index                U2            指向名称及顾炎武 打芒符 CONSTANT_NameAndType_inf索引项
+    CONSTANT_NameAndType_info       tag                  U1            值为12
+                                    index                U2            指向该字段或方法名称常量项的索引
+                                    index                U2            指向该字段或方法打桩符常量项的索引
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
