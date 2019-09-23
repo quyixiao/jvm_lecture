@@ -54,6 +54,74 @@ int id ,String name) 的描述符为
                                     index                U2            指向该字段或方法打桩符常量项的索引
 
 
+ 常量池中的信息供后面使用的
+
+java 字节码整体结构
+    4个字节                Magic Number                魔数，值为0xCAFEBABE,Java 创始人 James Cosling 制定
+    2+2个字节              Version                     包括 minor_version 和 major_version,minor_version:1.1(45),1.2(46),1.3(47),
+                                                       1.4(48),1.5(49),1.6(50),1.7(51)，指令集多年不变，但是版本号每次发布都发生变化。
+    2+n 个字节             Constant Pool               包括字符串常量，数值常量等
+    2个字节                Access Flags                访问标志
+    2个字节                This Class Name             当前这个类的名称
+    2个字节                Super Class Name            父类的名称或者信息
+    2 + n 个字节           Interfaces                  多个接口相关的信息，接口的信息是可变的
+    2 + n 个字节           Fields                      当前成员变量的信息
+    2 + n 个字节           Mehthods                    当前类的方法信息
+    2 + n 个字节           Attributes                  类的属性的信息，类的方法的信息，当前类的附加的属性信息
+
+
+java 字节码的整体结构
+类型                      名称                          数量
+u4                       magic(魔术)                    1
+u2                       minor_version(次版本号)         1
+u2                       major_version(主版本号)         1
+u2                       constant_pool_count(常量个数)   1
+cp_info                  constant_pool(常量池表)         constant_pool_count-1
+u2                       access_flags(类的访问控制权限)   1
+u2                       this_class(类名)                1
+u2                       super_class(父类名)             1
+u2                       interfaces_count(接口数)        interfaces_count
+u2                       fields_count(域个数)            1
+field_info               fields(域的表)                  fields_count
+u2                       methods_count(方法的个数)        1
+method_info              methods(方法表)                 methods_count
+u2                       attributes_count(附加属性的个数) 1
+attribute_info           attributes( 附加属性的表)        attributes_count
+
+
+完整的 java 字节码的结构
+ClassFile{
+    u4          magic ;
+    u2          minor_version;
+    u2          major_version;
+    u2          contant_pool_count;
+    cp_info     contant_pool[constant_pool_count-1];
+    u2          access_flags;
+    u2          this_class;
+    u2          super_class;
+    u2          interfaces_count;
+    u2          interfaces[interfaces_count];
+    u2          fields_count;
+    field_info  fields[fields_count];
+    u2          methods_count;
+    method_info methods[methods_count];
+    u2          attributes_count;
+    attribute_info attributes[attributes_count];
+
+}
+
+Class 字节码中有两种数据类型
+    字节数据直接量，这是基本的数据类型，其细分为 u1,u2,u4,u8四种，分别代表连续的1个字节，2个字节，4个字节，8个字节组成整体数据
+    表（数组）: 表是由多个基本数据或者其他的表，按照既定的有顺序组成的大的数据集合，表是有结构的，它的结构体现在，组成表的成分所在的
+    位置和顺序都是已是严格定义好的
+
+
+
+
+
+
+
+
 
 
 
