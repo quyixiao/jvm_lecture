@@ -116,6 +116,26 @@ Class 字节码中有两种数据类型
     位置和顺序都是已是严格定义好的
 
 
+上面的描述中11种数据类型的结构其实在 jdk1.7之后又增加了3种
+    （CONSTANT_MethodHandle_info，CONSTANT_MethodType_info 以及 CONSTANT_InvokeDynamic_info），这样的一共14种数据类型
+
+
+附加属性
+    接下来是该方法的附加属性
+    LineNumberTable：这个属性用来表示 code 数组中的字节码和 Java 代码的行数之间的关系，这个属性可以用来在调试的时候定位代码的行数
+
+    LineNumberTable_attribute{
+        u2      attribute_name_index;
+        u4      attribute_length;
+        u2      line_number_table_length;
+        {
+            u2    start_pc;
+            u2    line_number;
+        }line_number_table[line_number_table_length];
+
+    }
+
+
 
 
 
